@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Bookstore.Dal.Domain;
 using LiteDB;
 
@@ -31,10 +29,14 @@ namespace Bookstore.Dal.Repository
          Books.Update(book);
       }
 
-      public void Delete(Book book)
+      public bool Delete(string bookId)
       {
-         Books.Delete(book.BookId);
+         return Books.Delete(bookId);
       }
 
+      public Book Get(string bookId)
+      {
+         return Books.FindById(bookId);
+      }
    }
 }

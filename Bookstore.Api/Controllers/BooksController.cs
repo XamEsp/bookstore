@@ -19,7 +19,6 @@ namespace Bookstore.Api.Controllers
          _bookRepository = new BookRepository();
       }
 
-      // GET api/values
       [HttpGet]
       public ActionResult<IEnumerable<Book>> Get()
       {
@@ -27,30 +26,28 @@ namespace Bookstore.Api.Controllers
          return new ActionResult<IEnumerable<Book>>(books);
       }
 
-      // GET api/values/5
-      [HttpGet("{id}")]
-      public ActionResult<string> Get(int id)
+      [HttpGet("{bookId}")]
+      public ActionResult<Book> Get(string bookId)
       {
-         return "value";
+         return new ActionResult<Book>(_bookRepository.Get(bookId));
       }
 
-      // POST api/values
       [HttpPost]
       public void Post([FromBody] Book book)
       {
          _bookRepository.Insert(book);
       }
 
-      // PUT api/values/5
-      [HttpPut("{id}")]
-      public void Put(int id, [FromBody] string value)
+      [HttpPut]
+      public void Put([FromBody] Book book)
       {
+         _bookRepository.Update(book);
       }
 
-      // DELETE api/values/5
-      [HttpDelete("{id}")]
-      public void Delete(int id)
+      [HttpDelete("{bookId}")]
+      public void Delete(string bookId)
       {
+         _bookRepository.Delete(bookId);
       }
    }
 }

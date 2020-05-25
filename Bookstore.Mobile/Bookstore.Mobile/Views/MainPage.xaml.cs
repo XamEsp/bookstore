@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using Bookstore.Mobile.ViewModels;
 using Xamarin.Forms;
 
-namespace Bookstore.Mobile
+namespace Bookstore.Mobile.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
@@ -16,6 +12,16 @@ namespace Bookstore.Mobile
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var vm= new MainPageViewModel();
+            vm.Navigation = Navigation;
+
+            BindingContext = vm;
         }
     }
 }

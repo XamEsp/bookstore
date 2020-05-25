@@ -2,13 +2,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Bookstore.Mobile.ViewModels;assembly=Bookstore.Mobile"
              mc:Ignorable="d"
-             x:Class="Bookstore.Mobile.MainPage">
-
+             x:DataType="viewModels:MainPageViewModel"
+             x:Class="Bookstore.Mobile.Views.MainPage"
+             Title="Books Sample">
     <StackLayout>
-        <Button Text="Books" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Button
+            Text="Books"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand"
+            Command="{Binding NavigateToBooksCommand}"/>
     </StackLayout>
 
 </ContentPage>

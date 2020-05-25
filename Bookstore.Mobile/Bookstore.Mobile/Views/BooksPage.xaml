@@ -1,0 +1,33 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Bookstore.Mobile.ViewModels;assembly=Bookstore.Mobile"
+             xmlns:models="clr-namespace:Bookstore.Api.Client.Models;assembly=Bookstore.Api.Client"
+             mc:Ignorable="d"
+             x:DataType="viewModels:BooksPageViewModel"
+             x:Class="Bookstore.Mobile.Views.BooksPage"
+             Title="Books">
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding Books}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Book">
+                    <Grid
+                        Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Title}"/>
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{Binding ListPrice}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

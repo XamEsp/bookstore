@@ -1,35 +1,18 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Bookstore.Api.Client.Models;
 using Bookstore.Api.Client.Services;
+using Bookstore.Mobile.Views;
+using Xamarin.Forms;
 
 namespace Bookstore.Mobile.ViewModels
 {
-    public class MainPageViewModel
+    public class MainPageViewModel:BaseViewModel
     {
-        // TODO: move all books related functionality to BooksPage/BooksPageViewModel
-        public ObservableCollection<Book> Books { get; set; }
-
-        private readonly BookService _bookService;
-        public MainPageViewModel()
+        public INavigation Navigation { get; set; }
+        public ICommand NavigateToBooksCommand => new Command(async () =>
         {
-            _bookService = new BookService();
-            Books = new ObservableCollection<Book>();
-        }
-
-        public void Initialize()
-        {
-            var books = _bookService.Get();
-
-            Books.Clear();
-
-            foreach (var book in Books)
-            {
-                Books.Add(book);
-            }
-        }
-
-
-
-
+            await Navigation.PushAsync(new BooksPage());
+        });
     }
 }

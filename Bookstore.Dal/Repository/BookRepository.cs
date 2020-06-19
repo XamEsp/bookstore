@@ -7,9 +7,11 @@ namespace Bookstore.Dal.Repository
    public class BookRepository
    {
       private readonly LiteDatabase _db;
-      public BookRepository()
+
+      public BookRepository(bool isInMemory = false)
       {
-         _db = new LiteDatabase("bookstore.db");
+          var connString = isInMemory ? ":memory:" : "bookstore.db";
+         _db = new LiteDatabase(connString);
          Books.EnsureIndex(x => x.BookId);
       }
       public LiteCollection<Book> Books => _db.GetCollection<Book>();
